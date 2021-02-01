@@ -64,6 +64,7 @@ INSTALLED_APPS += [
 INSTALLED_APPS += [
     'users',
     'books',
+    'myutils',
     # 'posts',
 ]
 
@@ -80,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'users.middlewares.CheckUserIsBanned',
 ]
 
 ROOT_URLCONF = 'bookstore.urls'
@@ -169,11 +171,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ########## MT ############################
 EMAIL_HOST = os.environ.get("EMAIL_HOST_MT",'not found')
-print("email host",EMAIL_HOST)
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER_MT",'not found')
-print("email host user",EMAIL_HOST_USER)
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD_MT",'not found')
-print("email host psw",EMAIL_HOST_PASSWORD)
+
 EMAIL_PORT = '2525'
 EMAIL_USE_TLS = True
 

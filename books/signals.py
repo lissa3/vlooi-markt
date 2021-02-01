@@ -1,4 +1,4 @@
-from utils.help_utils import create_instance_unid
+from proj_help.help_utils import create_instance_unid
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from .models import Book

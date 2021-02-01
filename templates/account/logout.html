@@ -5,18 +5,8 @@
 
 {% block title %} logout | {{block.super}}{% endblock %}
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
-{% block styles %}
-    <link rel="stylesheet" href="{% static 'css/normalize.css'%}">
-    <link rel="stylesheet" href="{% static 'css/post.css' %}">
-{% endblock %}
-        <!-- hero -->
-        {% block hero %}
-            <section class="hero">
-                <div class="hero-inner">
-                    <h2 class="mt-1 spaceLet3">{% trans 'Make This Unforgettable' %}</h2>
-                </div>
-            </section>
-        {% endblock hero %}
+
+
         {% block content%}
         <main class="container-section">
             <div class="container-wrapper">
@@ -38,8 +28,9 @@
                        </span>
                    </div>
                 </div>
-
-                </main>
+           </section>
+            </div>
+           </main>
            <!--</section> -->
            <!-- ******* space placeholder *********** -->
 

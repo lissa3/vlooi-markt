@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Category,Author,Tag,UserProductRelation,Product
+from .models import Category,Author,Tag,UserBookRelation,Book
 from mptt.admin import MPTTModelAdmin
 
 
 admin.site.register(Category, MPTTModelAdmin)
-admin.site.register(Product)
+admin.site.register(Book)
 admin.site.register(Tag)
 admin.site.register(Author)
-admin.site.register(UserProductRelation)
+admin.site.register(UserBookRelation)
 
 

@@ -1,6 +1,16 @@
-from django.shortcuts import render
+# from django.shortcuts import render
+from .models import Book
 
-from django.views.generic import TemplateView
+from django.views.generic import ListView, DetailView
 
-class BookList(TemplateView):
-    template_name = 'books/book_list.html'
+
+class BookList(ListView):
+    model = Book
+    # context_object_name = 'book_list'
+    # template_name = 'books/book_list.html'
+
+
+class BookDetail(DetailView):
+    model = Book
+    # context_object_name = 'book'
+    # template_name = 'books/book_detail.html'

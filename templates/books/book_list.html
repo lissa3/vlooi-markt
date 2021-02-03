@@ -4,4 +4,26 @@
 {% block content %}
 
 <h3>List of available books</h3>
+<div class="cards-list">
+    {% if book_list %}
+        {% for book in book_list %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.title}}</h5>
+                    <p class="card-text">{{book.description}}</p>
+                    <a href="{{book.get_absolute_url}}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        {% endfor %}
+
+
+
+    {% else %}
+    <p>No books </p>
+
+    {% endif %}
+
+</div>
+
 {% endblock %}

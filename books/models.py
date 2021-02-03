@@ -3,6 +3,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from autoslug import AutoSlugField
 from django.contrib.auth import get_user_model
 from myutils.models import TimeStamp
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -41,7 +42,7 @@ class Author(models.Model):
         return self.name
 
 
-class Product(TimeStamp):
+class Book(TimeStamp):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='cat_books')
     authors = models.ManyToManyField('Author', related_name="authour_books")
     unid = models.CharField(max_length=8, blank=True)
@@ -53,7 +54,7 @@ class Product(TimeStamp):
     in_stock = models.BooleanField(default=True)
     on_sale = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag, blank=True, related_name='tag_books')
-    clients = models.ManyToManyField(User, through='UserProductRelation')
+    clients = models.ManyToManyField(User, through='UserBookRelation')
 
     def __str__(self):
         first_author = self.authors.first().name
@@ -69,10 +70,10 @@ class Product(TimeStamp):
         return f"'{self.title}' written by {str_authors}."
 
     def get_absolute_url(self, *args, **kwargs):
-        return reverse('books:book_detail', kwargs={'unid': self.unid})
+        return reverse('books:book-detail', kwargs={'slug': self.slug})
 
 
-class UserProductRelation(models.Model):
+class UserBookRelation(models.Model):
     RATING = (
         (1, 'Low'),
         (2, 'OK'),
@@ -81,7 +82,7 @@ class UserProductRelation(models.Model):
         (5, 'Excellent')
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     likes = models.BooleanField(default=False)
     rating = models.PositiveSmallIntegerField(choices=RATING, null=True)
 

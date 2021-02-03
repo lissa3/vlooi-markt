@@ -37,6 +37,9 @@ class Tag(models.Model):
 class Author(models.Model):
     name = models.CharField(max_length=250)
 
+    def __str__(self):
+        return self.name
+
 
 class Product(TimeStamp):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='cat_books')
@@ -53,7 +56,17 @@ class Product(TimeStamp):
     clients = models.ManyToManyField(User, through='UserProductRelation')
 
     def __str__(self):
-        return f"{self.title} written by {self.author}. Price {self.price}"
+        first_author = self.authors.first().name
+        if self.authors.count() == 1:
+            str_authors = f"{first_author}"
+        else:
+            str_authors = f"{first_author} and others"
+        # TODO: methods to list all authors
+        # for obj in self.authors.all():
+        #         names.append(obj.name)
+        # names = " ".join(names)
+
+        return f"'{self.title}' written by {str_authors}."
 
     def get_absolute_url(self, *args, **kwargs):
         return reverse('books:book_detail', kwargs={'unid': self.unid})

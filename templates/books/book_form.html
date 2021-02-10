@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4form %}
+
+{% block content %}
+
+<h3>Info about </h3>
+<div class="book-info">
+    <div class="cards-list">
+<!--        here comes a form     -->
+        <form role="form">
+            <legend>Create a book product</legend>
+            {% csrf_token %}
+            {{ form|bootstrap4form }}
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

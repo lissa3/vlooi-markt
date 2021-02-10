@@ -1,7 +1,8 @@
 # from django.shortcuts import render
+from .book_form import BookForm
 from .models import Book
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 
 class BookList(ListView):
@@ -14,3 +15,8 @@ class BookDetail(DetailView):
     model = Book
     # context_object_name = 'book'
     # template_name = 'books/book_detail.html'
+
+
+class BookCreate(CreateView):
+   form_class = BookForm
+   template_name = 'books/book_form.html'

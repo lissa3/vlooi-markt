@@ -55,7 +55,9 @@ INSTALLED_APPS += [
     'allauth.socialaccount',
     "bootstrap4",
     'mptt',
+    'bootstrap4form'
     # 'django_cleanup'
+    # django-bootstrap4 =>bootstrap4
 
 ]
 
@@ -195,6 +197,7 @@ EMAIL_USE_TLS = True
 # AWS_DEFAULT_ACL=None
 # DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 # AWS_S3_REGION_NAME = "us-west-2"
+
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'assets')]

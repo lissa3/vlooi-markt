@@ -62,10 +62,10 @@ class Book(TimeStamp):
             str_authors = f"{first_author}"
         else:
             str_authors = f"{first_author} and others"
-        # TODO: methods to list all authors
-        # for obj in self.authors.all():
+        #TODO: methods to list all authors
+        #for obj in self.authors.all():
         #         names.append(obj.name)
-        # names = " ".join(names)
+        #names = " ".join(names)
 
         return f"'{self.title}' written by {str_authors}."
 

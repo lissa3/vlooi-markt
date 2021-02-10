@@ -18,5 +18,11 @@ class BookDetail(DetailView):
 
 
 class BookCreate(CreateView):
-   form_class = BookForm
-   template_name = 'books/book_form.html'
+    form_class = BookForm
+    template_name = 'books/book_form.html'
+    
+    def form_valid(self,form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+

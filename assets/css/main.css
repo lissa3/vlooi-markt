@@ -1,6 +1,9 @@
 body {
     background-color:#f3dab4;
 }
+.card{
+    margin:1rem;
+}
 .cards-list{
     display:flex;
 

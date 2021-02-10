@@ -8,7 +8,7 @@
 <div class="book-info">
     <div class="cards-list">
 <!--        here comes a form     -->
-        <form role="form">
+        <form role="form" action="{% url 'books:book-create' %}" method="POST">
             <legend>Create a book product</legend>
             {% csrf_token %}
             {{ form|bootstrap4form }}

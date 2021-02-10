@@ -11,6 +11,7 @@
                 <img class="card-img-top" src="{% static 'img/cat.jpg' %}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{book.title}}</h5>
+                    <h5 class="card-title">On sale: {{book.created_at}}</h5>
                     <p class="card-text">{{book.description}}</p>
                     <a href="{{book.get_absolute_url}}" class="btn btn-primary">Details</a>
                 </div>

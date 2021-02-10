@@ -12,6 +12,9 @@ class BookForm(forms.ModelForm):
     )
     class Meta:
         model = Book
+        widgets = {
+            'description': forms.TextInput(attrs={'class': 'input', 'placeholder': 'say smth'})
+        }
         fields = ['category','authors', 'title', 'description', 'price'] #, 'tags']
 
     # def __init__(self, *args, **kwargs):

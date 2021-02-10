@@ -14,6 +14,9 @@
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
+                <a class="nav-link" href="#">{{user}}</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'books:book-create' %}">Create New Book</a>
             </li>
             <li class="nav-item">

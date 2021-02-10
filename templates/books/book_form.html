@@ -2,25 +2,22 @@
 {% load static %}
 {% load bootstrap4form %}
 
+{% block title %}{{headline}} | {{block.super}}{% endblock %}
+
 {% block content %}
 
-<h3>Info about </h3>
+
 <div class="book-info">
     <div class="cards-list">
-<!--        here comes a form     -->
-        <form role="form" action="{% url 'books:book-create' %}" method="POST">
-            <legend>Create a book product</legend>
-            {% csrf_token %}
-            {{ form|bootstrap4form }}
+        <!--        here comes a form     -->
+        <form role="form" action="" method="POST">
+            <legend> You can {{headline}} your book</legend>
+            {% include '_forms/generic_book_form.html' %}
             <div class="form-group">
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Save</button>
             </div>
         </form>
-
-
-
     </div>
 </div>
-
-
 {% endblock %}
+

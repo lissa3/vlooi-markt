@@ -21,8 +21,12 @@
                 <strong class="card-text">Price: ${{book.price}}</strong>
             </div>
         </div>
+        <div class="d-flex justify-content-around">
+            <a href="{% url 'books:book-edit' book.slug %}"><button class="btn btn-primary edit">Edit Book </button>
+            </a>
+
+            <form action="#" method="POST"><button class="btn btn-danger">Delete</button></form>
+        </div>
     </div>
 </div>
-
-
 {% endblock %}

@@ -6,6 +6,8 @@ body {
 }
 .cards-list{
     display:flex;
+    flex-direction:column;
+    justify-items:space-between;
 
 }
 .book-info{

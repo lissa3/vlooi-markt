@@ -18,6 +18,7 @@ class BookDetail(DetailView):
     model = Book
 
 
+# Note thx dj-braces use the same template for rendering form create + update
 class BookCreate(SetHeadlineMixin,CreateView):
     form_class = BookForm
     headline = 'create'

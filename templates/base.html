@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+{% load categs %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +20,8 @@
         {% endif %}
     <div class="row">
         <div class="col col-md-3">
-            {% include '_extra/side_menu.html' %}
+
+            {% categories_list %}
         </div>
 <!-- main content of the site -->
 

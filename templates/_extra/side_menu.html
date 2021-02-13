@@ -1,0 +1,22 @@
+{% load static %}
+{% load mptt_tags %}
+
+
+
+<div class="sidenav">
+        <h5>Categories </h5>
+    <ul class="root">
+        {% recursetree cats %}
+        <li>
+            <a href="{% url 'books:cats-list' slug=node.slug %}">{{ node.name }}</a>
+
+            {% if not node.is_leaf_node %}
+            <ul class="children">
+                <a href="#">{{children}}</a>
+            </ul>
+            {% endif %}
+        </li>
+        {% endrecursetree %}
+    </ul>
+</div>
+

@@ -13,6 +13,8 @@ User = get_user_model()
 class Category(MPTTModel):
     name = models.CharField(max_length=100, unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    slug = AutoSlugField(populate_from='name',unique=True)
+
 
     class MPTTMeta:
         order_insertion_by = ['name']
@@ -26,7 +28,7 @@ class Category(MPTTModel):
 
 class Tag(models.Model):
     name = models.CharField(max_length=60, db_index=True)
-    slug = AutoSlugField(populate_from='name', unique=True)
+    slug = AutoSlugField(populate_from='name',unique=True)
 
     def __str__(self):
         return self.name

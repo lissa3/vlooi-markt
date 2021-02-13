@@ -8,10 +8,10 @@ from .models import Book, Category
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from braces.views import SetHeadlineMixin  # PrefetchRelatedMixin,
+from .mixins import DisplayCategoryMixin
 
 
-
-class BookCategory(ListView):
+class BookCategory(DisplayCategoryMixin, ListView):
     """List of products based on category (slug)"""
     template_name = "books/book_list.html"
     paginate_by = 5
@@ -30,7 +30,7 @@ class BookCategory(ListView):
         return book_list
 
 
-class BookList( ListView):
+class BookList(DisplayCategoryMixin, ListView):
     model = Book
 
     def get_context_data(self, *args, **kwargs):
@@ -40,12 +40,12 @@ class BookList( ListView):
         return context
 
 
-class BookDetail( DetailView):
+class BookDetail(DisplayCategoryMixin, DetailView):
     model = Book
 
 
 # Note thx dj-braces use the same template for rendering form create + update
-class BookCreate(SetHeadlineMixin, CreateView):
+class BookCreate(SetHeadlineMixin, DisplayCategoryMixin, CreateView):
     form_class = BookForm
     headline = 'create'
     template_name = 'books/book_form.html'
@@ -66,7 +66,7 @@ class BookCreate(SetHeadlineMixin, CreateView):
         return super().form_valid(form)
 
 
-class BookEdit(UpdateView):
+class BookEdit(DisplayCategoryMixin, UpdateView):
     form_class = BookForm
     headline = 'edit'
     template_name = 'books/book_form.html'

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BookList,BookDetail,BookCreate,BookEdit,BookCategory
+from .views_with_mixin_cats import BookList,BookDetail,BookCreate,BookEdit,BookCategory
 
 app_name = 'books'
 

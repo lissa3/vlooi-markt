@@ -11,16 +11,16 @@ from django.contrib.auth import logout
 User = get_user_model()
 
 
-class CheckUserIsBanned(MiddlewareMixin):
-    def process_request(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            # user_obj = get_object_or_404(User,user=user)
-            if request.user.banned:
-                try:
-                    messages.add_message(request, messages.WARNING, 'This account hab been banned')
-                except messages.MessageFailure:
-                    pass
-                logout(request)
-                # re-direct to the home page
-                return HttpResponseRedirect('/')
-                # return HttpResponseRedirect(settings.LOGIN_URL)
+# class CheckUserIsBanned(MiddlewareMixin):
+#     def process_request(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             # user_obj = get_object_or_404(User,user=user)
+#             if request.user.banned:
+#                 try:
+#                     messages.add_message(request, messages.WARNING, 'This account hab been banned')
+#                 except messages.MessageFailure:
+#                     pass
+#                 logout(request)
+#                 # re-direct to the home page
+#                 return HttpResponseRedirect('/')
+#                 # return HttpResponseRedirect(settings.LOGIN_URL)

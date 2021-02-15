@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
-{% load categs %}
+{# {% load categs %}#}
+<!--I use context_processors instead-->
 
 <html lang="en">
 <head>
@@ -21,7 +22,8 @@
     <div class="row">
         <div class="col col-md-3">
 
-            {% categories_list %}
+            {# {% categories_list %} #}
+            {% include '_extra/side_menu.html'%}
         </div>
 <!-- main content of the site -->
 

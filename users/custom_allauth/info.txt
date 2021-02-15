@@ -1,0 +1,19 @@
+https://dev.to/gajesh/the-complete-django-allauth-guide-la3
++ docs allauth
+extra info about trafic (2020)
+https://pypi.org/project/django-tracking-analyzer/
+
+ACCOUNT_USERNAME_BLACKLIST = []
+
+queryset.update(is_active = False)
+self.message_user(request, "User banned")
+self.message_user(request, "Users ban has been lifted")
+
+from django.views.generic import TemplateView
+from braces.views import UserPassesTestMixin
+
+
+class SomeUserPassView(UserPassesTestMixin, TemplateView):
+    def test_func(self, user):
+        return (user.is_staff and not user.is_superuser
+                and user.email.endswith(u"mydomain.com"))

@@ -10,16 +10,17 @@ class BookForm(forms.ModelForm):
     price = forms.DecimalField(
         help_text='Price will be displayed in US dollars'
     )
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.fields['category'].empty_label = "Category not chosen yet"
 
     class Meta:
         model = Book
         widgets = {
-            'description': forms.Textarea(attrs={'cols':60,'rows':10,'class': 'input', 'placeholder': 'say smth'})
+            'description': forms.Textarea(attrs={'cols': 60, 'rows': 10, 'class': 'input', 'placeholder': 'say smth'})
         }
-        fields = ['category','authors', 'title', 'description', 'price'] #, 'tags']
+        fields = ['category', 'authors', 'title', 'description', 'price']  # , 'tags']
 
     # def __init__(self, *args, **kwargs):
     #     # show category choice in form (radio button) Now = default = dropdown

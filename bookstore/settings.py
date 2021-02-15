@@ -83,7 +83,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'users.middlewares.CheckUserIsBanned',
+    # 'users.middlewares.CheckUserIsBanned',
 ]
 
 ROOT_URLCONF = 'bookstore.urls'
@@ -99,7 +99,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'books.context_processors.get_cats'
+                'books.context_processors.get_cats'
             ],
         },
     },
@@ -155,7 +155,7 @@ USE_L10N = True
 USE_TZ = True
 
 # allauth settings
-# email or user name; username is mandatory
+
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED =True
 ACCOUNT_EMAIL_VERIFICATION ="optional"  #'mandatory','none'
@@ -168,6 +168,10 @@ LOGIN_URL = '/accounts/login'
 # (below) redirect when user confirms (form button) email link
 # ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
 # in this case after OK email confirm |=> re-direct to '/' (see above)
+# here: both username || email; otherwise ACCOUNT_USERNAME_REQUIRED = None
+#ACCOUNT_USERNAME_REQUIRED = False
+#ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# email or user name; username is mandatory
 
 # email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

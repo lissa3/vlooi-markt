@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import  HomePage
+from .views import  HomePage,Banned
 # from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', HomePage.as_view(),name="home"),
+    path('403-forbidden/', Banned.as_view(),name="banned"),
     path('books/',include('books.urls'))
 ]
 if settings.DEBUG:

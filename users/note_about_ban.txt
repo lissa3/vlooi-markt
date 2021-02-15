@@ -1,0 +1,9 @@
+see also users/custom_allauth
+
+Options:
+1.middleware: at the level of request|=> BEFORE reaching views
+2.Mixin = from braces.views import UserPassesTestMixin ( already included in stand dj.contrib.auth.mixins)
+
+Note: for more precies targeting perms:
+beware: UPTM is called before code in view
+so if don't have an obejc yet (create view) you can't call self.get_object()

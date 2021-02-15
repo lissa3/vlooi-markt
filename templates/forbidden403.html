@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+<div class="container">
+    {% if messages %}
+    {% for message in messages %} {{ message }} {% endfor %}
+    {% endif %}
+    <div class="row">
+        <!-- main content of the site -->
+        <div class="col col-md-9">
+            {% block content %}
+                <h4>Access Forbidden for this account</h4>
+            {% endblock content%}
+
+        </div>
+    </div>
+
+</div>

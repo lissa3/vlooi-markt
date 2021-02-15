@@ -67,17 +67,21 @@ class BookCreate(LoginRequiredMixin, SetHeadlineMixin, CreateView):
         return super().form_valid(form)
 
 
-# class BookEdit(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
 class BookEdit(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+# class BookEdit(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
     form_class = BookForm
     headline = 'edit'
     template_name = 'books/book_form.html'
 
-    # def test_func(self):
-    #     obj = self.get_object()
-    #     var1 = obj.owner == self.request.user
-    #     var2 = not self.request.user.banned
-    #     return var1 and var2
+    def test_func(self):
+        obj = self.get_object()
+        var1 = obj.owner == self.request.user
+        var2 = not self.request.user.banned
+        if var1 and var2:
+            return True
+        else:
+            messages.error( self.request, 'You do not have permission to view the previous page.')
+        # return var1 and var2
 
     def get_queryset(self):
         # otherwise search for an object will be in whole qs

@@ -55,7 +55,8 @@ INSTALLED_APPS += [
     'allauth.socialaccount',
     "bootstrap4",
     'mptt',
-    'bootstrap4form'
+    'bootstrap4form',
+    'rest_framework',
     # 'django_cleanup'
     # django-bootstrap4 =>bootstrap4
 
@@ -202,6 +203,21 @@ EMAIL_USE_TLS = True
 # AWS_DEFAULT_ACL=None
 # DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 # AWS_S3_REGION_NAME = "us-west-2"
+
+# DRF
+REST_FRAMEWORK = {
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    # ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
 
 
 STATIC_URL = '/static/'

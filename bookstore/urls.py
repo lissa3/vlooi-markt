@@ -26,7 +26,9 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', HomePage.as_view(),name="home"),
     path('403-forbidden/', Banned.as_view(),name="banned"),
-    path('books/',include('books.urls'))
+    path('books/',include('books.urls')),
+    path('api-auth/', include('rest_framework.urls')), # for browser api
+    path('api/v1/',include('api.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

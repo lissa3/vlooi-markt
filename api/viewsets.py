@@ -16,6 +16,7 @@ class BookViewset(viewsets.ModelViewSet):
     # authentication_classes = [SessionAuthentication]
     # permission_classes = [IsAuthenticated] # checks auth; if OK|=> perform_create starts
     serializer_class = BookSerializer
+    lookup_field = 'slug'
     queryset = Book.objects.all()
 
    # def create /perform_create: extra layer of validation ( excl duble; type or like that

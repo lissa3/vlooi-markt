@@ -68,6 +68,7 @@ INSTALLED_APPS += [
     'users',
     'books',
     'myutils',
+    'clubs'
     # 'posts',
 ]
 
@@ -111,6 +112,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 
 ]
+
 
 WSGI_APPLICATION = 'bookstore.wsgi.application'
 
@@ -219,12 +221,14 @@ REST_FRAMEWORK = {
     ],
 }
 
-
+# check dif dj 3.0...(BASE_DIR == str ) vs 3.1 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'assets')]
+# try STATICFILES_DIRS = [BASE_DIR.joinpath('assets')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+#try:  MEDIA_ROOT = BASE_DIR.joinpath('media')
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20*1024*1024
 
 LOGGING = {

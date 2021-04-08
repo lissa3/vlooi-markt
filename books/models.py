@@ -59,11 +59,11 @@ class Book(TimeStamp):
     clients = models.ManyToManyField(User, through='UserBookRelation')
 
     def __str__(self):
-        first_author = self.authors.first().name
+        first_author = self.authors.first()
         if self.authors.count() == 1:
-            str_authors = f"{first_author}"
+            str_authors = f"{first_author.name}"
         else:
-            str_authors = f"{first_author} and others"
+            str_authors = f"{first_author.name} and others"
         #TODO: methods to list all authors
         #for obj in self.authors.all():
         #         names.append(obj.name)

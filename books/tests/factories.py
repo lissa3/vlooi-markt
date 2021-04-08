@@ -4,22 +4,24 @@ from django.contrib.auth import get_user_model
 
 from factory.django import DjangoModelFactory
 
-from books.models import Author, Book, UserBookRelation, Category
+from books.models import Author, Book, UserBookRelation, Category,Tag
 
 User = get_user_model()
 
 fake = faker.Faker()
 
 
-class UserFactory(factory.django.DjangoModelFactory):
+class UserFactory(DjangoModelFactory):
     class Meta:
         model = User
 
     username = factory.Sequence(lambda n: 'username_{}'.format(n))
     email = factory.LazyAttribute(lambda o: '%s@example.com' % o.username)
 
-
-
+class TagFactory(DjangoModelFactory):
+    class Meta:
+        model = Tag
+    name = factory.Faker('word')
 
 class AuthorFactory(DjangoModelFactory):
     class Meta:
@@ -29,11 +31,12 @@ class AuthorFactory(DjangoModelFactory):
 
 
 class BookFactory(DjangoModelFactory):
+    """dif ways to fill title/description/text"""
     class Meta:
         model = Book
 
     title = factory.lazy_attribute(lambda n: ' '.join(fake.words(nb=3)))
-    description = factory.lazy_attribute(lambda n: ' '.join(fake.words(nb=3)))
+    description = factory.Faker('sentence', nb_words=3, variable_nb_words=True)
     price = factory.Faker('pydecimal', left_digits=4, right_digits=2, positive=True)
     in_stock = factory.Faker('pybool')
     on_sale = factory.Faker('pybool')

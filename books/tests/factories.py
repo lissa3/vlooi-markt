@@ -1,10 +1,12 @@
 import factory
 import faker
+# from factory import fuzzy # factory.fuzzy doesn't work
+# from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model
 
 from factory.django import DjangoModelFactory
 
-from books.models import Author, Book, UserBookRelation, Category,Tag
+from books.models import Author, Book, UserBookRelation, Category, Tag
 
 User = get_user_model()
 
@@ -17,11 +19,15 @@ class UserFactory(DjangoModelFactory):
 
     username = factory.Sequence(lambda n: 'username_{}'.format(n))
     email = factory.LazyAttribute(lambda o: '%s@example.com' % o.username)
+    # password = factory.LazyFunction(lambda: make_password("1"))
+
 
 class TagFactory(DjangoModelFactory):
     class Meta:
         model = Tag
+
     name = factory.Faker('word')
+
 
 class AuthorFactory(DjangoModelFactory):
     class Meta:
@@ -32,6 +38,7 @@ class AuthorFactory(DjangoModelFactory):
 
 class BookFactory(DjangoModelFactory):
     """dif ways to fill title/description/text"""
+
     class Meta:
         model = Book
 
@@ -41,19 +48,23 @@ class BookFactory(DjangoModelFactory):
     in_stock = factory.Faker('pybool')
     on_sale = factory.Faker('pybool')
     owner = factory.SubFactory(UserFactory)
+
     # no success with decorator ...hm ...
-    # @factory.post_generation
-    # def authors(self, create, extracted, **kwargs):
-    #     print("inside decorator")
-    #     if not create:
-    #         return
-    #     if extracted:
-    #         for _ in range(2):  # <- if you want more than one
-    #             self.authors.add(AuthorFactory())
-    #             self.refresh_from_db()
 
-
-
+    @factory.post_generation
+    def authors(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted: 
+            for author in extracted:
+                self.authors.add(author)
+        # or as option with already added objects
+        # for _ in range(2):
+        #     author = AuthorFactory()
+        #     tag = TagFactory()
+        #     print("author", author)
+        #     self.authors.add(author)
+        #     self.tags.add(tag)
 
 
 class UserBookRelationFactory(DjangoModelFactory):
@@ -62,12 +73,13 @@ class UserBookRelationFactory(DjangoModelFactory):
 
     user = factory.SubFactory(UserFactory)
     book = factory.SubFactory(BookFactory)
-    rating = 5
-    likes = True
+    rating = factory.Faker('pyint', min_value=0, max_value=5)
+    likes = factory.Faker('pybool')
 
-# class UserWithGroupFactory(UserFactory):
-#     membership = factory.RelatedFactory(GroupLevelFactory, 'user')
-#
+
+class UserWithBookFactory(UserFactory):
+    membership = factory.RelatedFactory(UserBookRelationFactory, related_name='user')
+
 # class UserWith2GroupsFactory(UserFactory):
 #     membership1 = factory.RelatedFactory(GroupLevelFactory, 'user', group__name='Group1')
 #     membership2 = factory.RelatedFactory(GroupLevelFactory, 'user', group__name='Group2')

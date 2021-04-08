@@ -52,10 +52,18 @@ class BookFactory(DjangoModelFactory):
     # no success with decorator ...hm ...
 
     @factory.post_generation
+    def tags(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for tag in extracted:
+                self.tags.add(tag)
+
+    @factory.post_generation
     def authors(self, create, extracted, **kwargs):
         if not create:
             return
-        if extracted: 
+        if extracted:
             for author in extracted:
                 self.authors.add(author)
         # or as option with already added objects
@@ -78,7 +86,7 @@ class UserBookRelationFactory(DjangoModelFactory):
 
 
 class UserWithBookFactory(UserFactory):
-    membership = factory.RelatedFactory(UserBookRelationFactory, related_name='user')
+    user_related_to_book = factory.RelatedFactory(UserBookRelationFactory, related_name='user')
 
 # class UserWith2GroupsFactory(UserFactory):
 #     membership1 = factory.RelatedFactory(GroupLevelFactory, 'user', group__name='Group1')

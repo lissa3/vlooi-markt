@@ -1,5 +1,6 @@
 #custom files
 #settings.py
+docs.txt
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

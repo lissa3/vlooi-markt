@@ -63,13 +63,14 @@ INSTALLED_APPS += [
 ]
 
 
-# custom apps
+# custom apps ( see docs)
 INSTALLED_APPS += [
     'users',
     'books',
     'myutils',
-    'clubs'
-    # 'posts',
+    'clubs',
+    'checks',
+
 ]
 
 SITE_ID = 1
